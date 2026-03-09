@@ -1,16 +1,13 @@
-// Mobile Navigation Toggle
 document.addEventListener('DOMContentLoaded', function() {
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
 
-    // Toggle mobile navigation
     navToggle.addEventListener('click', function() {
         navMenu.classList.toggle('active');
         navToggle.classList.toggle('active');
     });
 
-    // Close mobile navigation when clicking on a link
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
             navMenu.classList.remove('active');
@@ -18,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Close mobile navigation when clicking outside
     document.addEventListener('click', function(e) {
         if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
             navMenu.classList.remove('active');
@@ -26,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Smooth scrolling for navigation links
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -43,7 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Add active class to current section link
     function setActiveNavLink() {
         const sections = document.querySelectorAll('section');
         const scrollPos = window.scrollY + 100;
@@ -64,42 +58,35 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Listen for scroll events
     window.addEventListener('scroll', setActiveNavLink);
 
-    // Contact form handling
     const contactForm = document.querySelector('.contact-form form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Get form data
             const formData = new FormData(this);
             const name = this.querySelector('input[type="text"]').value;
             const email = this.querySelector('input[type="email"]').value;
             const subject = this.querySelector('input[placeholder="Subject"]').value;
             const message = this.querySelector('textarea').value;
 
-            // Basic validation
             if (!name || !email || !subject || !message) {
                 alert('Please fill in all fields.');
                 return;
             }
 
-            // Email validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
                 alert('Please enter a valid email address.');
                 return;
             }
 
-            // Simulate form submission (replace with actual form handling)
             alert('Thank you for your message! I\'ll get back to you soon.');
             this.reset();
         });
     }
 
-    // Add scroll-triggered animations
     function animateOnScroll() {
         const elements = document.querySelectorAll('.skill-category, .project-card, .about-stats .stat');
         
@@ -113,13 +100,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Listen for scroll events for animations
     window.addEventListener('scroll', animateOnScroll);
     
-    // Initial call to animate visible elements
     animateOnScroll();
 
-    // Add navbar background on scroll
     function updateNavbarBackground() {
         const navbar = document.querySelector('.navbar');
         if (window.scrollY > 50) {
@@ -133,7 +117,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.addEventListener('scroll', updateNavbarBackground);
 
-    // Typing animation for home title
     function typeWriter() {
         const titleElement = document.querySelector('.home-title');
         if (!titleElement) return;
@@ -151,14 +134,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // Start typing animation after a brief delay
         setTimeout(type, 500);
     }
 
-    // Start typing animation when page loads
     typeWriter();
 
-    // Smooth reveal animation for sections
     function revealSections() {
         const sections = document.querySelectorAll('section');
         
@@ -173,7 +153,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Initialize section reveal styles
     const sections = document.querySelectorAll('section');
     sections.forEach(section => {
         section.style.opacity = '0';
@@ -181,7 +160,6 @@ document.addEventListener('DOMContentLoaded', function() {
         section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     });
 
-    // Show home section immediately
     const homeSection = document.querySelector('#home');
     if (homeSection) {
         homeSection.style.opacity = '1';
@@ -189,10 +167,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     window.addEventListener('scroll', revealSections);
-    revealSections(); // Initial call
+    revealSections();
 });
 
-// Add CSS for active nav link
 const style = document.createElement('style');
 style.textContent = `
     .nav-link.active {
